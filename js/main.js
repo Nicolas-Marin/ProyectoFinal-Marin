@@ -1,4 +1,3 @@
-
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', iniciar);
 function recargarPagina() {
@@ -279,5 +278,28 @@ function iniciar() {
 
     resultado1();
 };
+function finalGanador() {
+    return new Promise((resolve) => {
+      const mensajeFinal = "--------------------------------------";
+      
+      const finalElement = document.querySelector("#final");
+      const pElement = document.createElement("p");
+      pElement.innerHTML = mensajeFinal;
+      finalElement.appendChild(pElement);
+      
+      setTimeout(() => {
+        resolve();
+      }, 600000);
+    });
+  }
 
+finalGanador()
+
+.then(() => {
+    const mensajeDemora = "Tardaste demasiado"
+    const demoraElement = document.querySelector("#final")
+    const pElement = document.createElement("p");
+    pElement.innerText = mensajeDemora; 
+    demoraElement.appendChild(pElement);
+});
 

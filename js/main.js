@@ -1,19 +1,23 @@
+
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', iniciar);
+function recargarPagina() {
+    location.reload();
+}
 function iniciar() {
     let r1 = "";
     let r2 = "";
     let r3 = "";
     let r4 = "";
     let r5 = "";
-    let muertes = parseInt(localStorage.getItem('muertes')) || 0; 
+    let muertes = parseInt(localStorage.getItem('muertes')) || 0;
     let nombre = document.querySelector('#nombre');
     let edad = document.querySelector('#edad');
 
     const persona = {
         nombre: nombre.value,
         edad: edad.value,
-      };
+    };
 
     const textDiv = document.querySelector('.text');
 
@@ -26,7 +30,7 @@ function iniciar() {
         textDiv.innerHTML = `<p><span class="color">Sun Pin solo podía ganar si te asesinaba en contraataque <br> VICTORIA! Felicidades ${nombre} ganaste esta guerra con tan solo ${edad} años  <br> moriste:${muertes} Veces</span> </p>`;
         textDiv.appendChild(volver);
     }
-    
+
     volver.addEventListener('click', function () {
         textDiv.innerHTML = '';
         re1();
@@ -176,10 +180,47 @@ function iniciar() {
         re1();
     });
 
-    re1();
-
     function re1() {
-        textDiv.innerHTML = '<p>"Comienza la aventura! <p>Eres el general () del estado de la China antigua (Año 1912) <P>Te enfrentas contra el ejército descendiente de Sun Tzu <p> ¿PODRÁS GANAR LA GUERRA? <p> Tu oponente Sun Pin es el general del estado de Qi y tiene menos tropas <p> El ejército de Qi es conocido por ser cobarde, tus hombres se sienten confiados <p> Elige <br> <span class="color"> 1 - Preparar un ataque </span> <br> <span class="color"> 2 - Esperar al movimiento del enemigo </span></p>';
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => {
+
+                const indiceAleatorio = Math.floor(Math.random() * data.length);
+
+                const nombreAleatorio = data[indiceAleatorio].name;
+
+                const textoInicialActualizado = textoInicial.map(texto => texto.replace('Sun Tzu', nombreAleatorio));
+
+                const contenidoTexto = textoInicialActualizado.map(texto => `<p>${texto}</p>`).join('');
+
+                textDiv.innerHTML = contenidoTexto;
+                textDiv.appendChild(primerBotonr1);
+                textDiv.appendChild(segundoBotonr1);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Algo Salio Mal, parece que el villano es timido (API error) ',
+                  })
+                  const reiniciar = document.querySelector('.swal2-confirm');
+                    reiniciar.addEventListener('click', recargarPagina);
+            });
+            const textDiv = document.querySelector('.text');
+        const textoInicial = [
+            'Comienza la aventura!',
+            'Eres el general del estado de la China antigua (Año 1912)',
+            'Te enfrentas contra el ejército del general Sun Tzu',
+            '¿PODRÁS GANAR LA GUERRA?',
+            'Tu oponente Sun Pin es el general del estado de Qi y tiene menos tropas',
+            'El ejército de Qi es conocido por ser cobarde, tus hombres se sienten confiados',
+            'Elige',
+            '1 - Preparar un ataque',
+            '2 - Esperar al movimiento del enemigo'
+        ];
+        const contenidoTexto = textoInicial.map(texto => `<p>${texto}</p>`).join('');
+
+        textDiv.innerHTML = contenidoTexto;
 
         const primerBotonr1 = document.createElement('button');
         primerBotonr1.textContent = 'Opcion 1';
@@ -191,13 +232,10 @@ function iniciar() {
         segundoBotonr1.id = 'boton2r1';
         segundoBotonr1.className = 'active';
 
-        const elementos = document.querySelectorAll('.active'); // Corrección: cambiar 'elemento' por 'elementos'
+        const elementos = document.querySelectorAll('.active');
         elementos.forEach(elemento => {
             elemento.classList.add('disable');
         });
-
-        textDiv.appendChild(primerBotonr1);
-        textDiv.appendChild(segundoBotonr1);
 
         primerBotonr1.addEventListener('click', function () {
             r1 = 1;
@@ -221,7 +259,7 @@ function iniciar() {
         }
     }
 
-    volver.addEventListener('click', function () {
+    volver.addEventListener('click', () => {
         textDiv.innerHTML = '';
         Swal.fire({
             position: 'top',
@@ -230,9 +268,9 @@ function iniciar() {
             text: 'Creado por Nicolas Marin - Proyecto Final de Js (CoderHouse)',
             showConfirmButton: true,
             confirmButtonText: 'Reiniciar!'
-          })
+        })
         const reiniciar = document.querySelector('.swal2-confirm');
-        reiniciar.addEventListener('click', iniciar);
+        reiniciar.addEventListener('click', recargarPagina);
     });
 
     re1();

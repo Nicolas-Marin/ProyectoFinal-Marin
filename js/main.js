@@ -36,7 +36,7 @@ function iniciar() {
     });
 
     function resultado4() {
-        textDiv.innerHTML = '<p>Día tras día encienden menos hogueras, el ejercito de Qi retrocede <br> ¿que haces? <br> <span class="color">1 - Atacar </span> <br> <span class="color">2 - Esperar la ofensiva  </span> </p>';
+        textDiv.innerHTML = '<p>Día tras día encienden menos hogueras, el ejercito de enemigo retrocede <br> ¿que haces? <br> <span class="color">1 - Atacar </span> <br> <span class="color">2 - Esperar la ofensiva  </span> </p>';
 
         const primerBotonr4 = document.createElement('button');
         primerBotonr4.textContent = 'Opcion 1';
@@ -215,8 +215,7 @@ function iniciar() {
             'Eres el general del estado de la China antigua (Año 1912)',
             'Te enfrentas contra el ejército del general #######',
             '¿PODRÁS GANAR LA GUERRA?',
-            'Tu oponente Sun Pin es el general del estado de Qi y tiene menos tropas',
-            'El ejército de Qi es conocido por ser cobarde, tus hombres se sienten confiados',
+            'El ejército de Enemigo es conocido por ser cobarde, tus hombres se sienten confiados',
             'Elige',
             '1 - Preparar un ataque',
             '2 - Esperar al movimiento del enemigo'
@@ -254,7 +253,7 @@ function iniciar() {
             if (respuesta1 == 2) {
                 resultado2();
             } else {
-                textDiv.innerHTML = '<h1> En el camino eres sorprendido por el ejercito de Qi <br> MORISTE en el escenario 1!</h1>';
+                textDiv.innerHTML = '<h1> En el camino eres sorprendido por el ejercito del enemigo <br> MORISTE en el escenario 1!</h1>';
                 textDiv.appendChild(volver);
                 muertes += 1;
                 localStorage.setItem('muertes', muertes.toString());

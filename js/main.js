@@ -26,7 +26,7 @@ function iniciar() {
     volver.className = 'active';
 
     function resultado5({ nombre, edad }) {
-        textDiv.innerHTML = `<p><span class="color">Sun Pin solo podía ganar si te asesinaba en contraataque <br> VICTORIA! Felicidades ${nombre} ganaste esta guerra con tan solo ${edad} años  <br> moriste:${muertes} Veces</span> </p>`;
+        textDiv.innerHTML = `<p><span class="color">El enemigo solo podía ganar si te asesinaba en contraataque <br> VICTORIA! Felicidades ${nombre} ganaste esta guerra con tan solo ${edad} años  <br> moriste:${muertes} Veces</span> </p>`;
         textDiv.appendChild(volver);
     }
 

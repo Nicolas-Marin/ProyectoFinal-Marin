@@ -1,7 +1,7 @@
 const btn = document.querySelector('.btn');
 btn.addEventListener('click', iniciar);
 function iniciar() {
-    let r1 = ""; 
+    let r1 = "";
     let r2 = "";
     let r3 = "";
     let r4 = "";
@@ -71,7 +71,6 @@ function iniciar() {
                 textDiv.appendChild(volver);
                 muertes += 1;
                 localStorage.setItem('muertes', muertes.toString());
-                console.log('Muertes actualizadas en localStorage:', localStorage.getItem('muertes'));
             }
         }
     }
